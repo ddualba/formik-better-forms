@@ -1,51 +1,8 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import {Styles} from './Styles'
-import { Formik, useField, Form } from 'formik'
+import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
-
-const CustomTexInput = ({ label, ...props}) => {
-  const [field, meta] = useField(props);
-
-  return (
-    <>
-    <label htmlFor={props.id || props.name}>{label}</label>
-    <input className='text-input' {...field} {...props} />
-    {meta.touched && meta.error ? (
-      <div className="error">{meta.error}</div>
-    ) : null}
-    </>
-  )
-}
-
-const CustomCheckbox = ({ children, ...props}) => {
-  const [field, meta] = useField(props, 'checkbox');
-
-  return (
-    <Fragment>
-    <label className="checkbox">
-    <input type="checkbox" {...field} {...props} />
-      {children}
-      </label>
-    {meta.touched && meta.error ? (
-      <div className="error">{meta.error}</div>
-    ) : null}
-    </Fragment>
-  )
-}
-
-const CustomSelect = ({ label, ...props}) => {
-  const [field, meta] = useField(props);
-
-  return (
-    <>
-    <label htmlFor={props.id || props.name}>{label}</label>
-    <select {...field} {...props} />
-    {meta.touched && meta.error ? (
-      <div className="error">{meta.error}</div>
-    ) : null}
-    </>
-  )
-}
+import {CustomTextInput, CustomCheckbox, CustomSelect} from './customInputs'
 
 function App() {
   return (
@@ -84,8 +41,8 @@ function App() {
 { props => (
   <Form>
     <h1>Sign Up</h1>
-    <CustomTexInput label="Name" name="name" type="text" placeholder="Enter name" />
-    <CustomTexInput label="Email" name="email" type="email" placeholder="email@example.com" />
+    <CustomTextInput label="Name" name="name" type="text" placeholder="Enter name" />
+    <CustomTextInput label="Email" name="email" type="email" placeholder="email@example.com" />
     <CustomSelect label="Special Power" name="specialPower">
       <option value="">Select a Special Power</option>
       <option value="flight">flight</option>
